@@ -40,8 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'App_Blog',
-    'App_Login'
+    'App_Login',
+    'crispy_forms'
 ]
+
+
+#bootstrap/ bootstrap 4 uniform etc
+
+CRISPY_TEMPLATE_PACK='bootstrap4'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -125,6 +132,8 @@ STATICFILES_DIR=[STATIC_DIR,]
 #media
 MEDIA_ROOT=MEDIA_DIR
 MEDIA_URL='/media/'
+
+LOGIN_URL='account/login/'
 
 
 # Default primary key field type
