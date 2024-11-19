@@ -41,13 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'App_Blog',
     'App_Login',
-    'crispy_forms'
+    
 ]
 
 
-#bootstrap/ bootstrap 4 uniform etc
 
-CRISPY_TEMPLATE_PACK='bootstrap4'
 
 
 MIDDLEWARE = [
