@@ -1,10 +1,13 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,PasswordChangeForm
 from django.contrib.auth import login,authenticate,logout
 from django.shortcuts import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from App_Login.forms import signUpForm,Userprofilechange
+from App_Login.forms import signUpForm,Userprofilechange,profile_picture
+from django.views.decorators.csrf import csrf_protect
+
+
 # Create your views here.
 
 def sign_up(request):
@@ -58,3 +61,44 @@ def userChange(request):
             
     
     return render(request,'App_Login/profile_change.html',context={"form":form})     
+
+@login_required
+@csrf_protect
+def changePassword(request):
+    current_user= request.user
+    form= PasswordChangeForm(current_user)
+    changed=False
+    if request.method=="POST":
+        form= PasswordChangeForm(current_user,data=request.POST)
+        if form.is_valid():
+            form.save()
+            changed=True
+    
+    return render(request,"App_Login/change_pass.html",context={"form":form, "changed":changed}) 
+
+@login_required
+def add_profilepic(request):
+    form= profile_picture()
+    if request.method=="POST":
+        form=profile_picture(request.POST,request.FILES)
+        if form.is_valid():
+           user_obj= form.save(commit=False)
+           user_obj.user= request.user
+           user_obj.save()
+           return HttpResponseRedirect(reverse("App_Login:profile"))
+    
+    
+    
+    return render(request,"App_Login/profile_pic_up.html",context={"form":form})
+           
+
+@login_required 
+def change_propic(request):
+    form= profile_picture(instance=request.user.user_profile)
+    if request.method=="POST":
+        form=profile_picture(request.POST,request.FILES,instance=request.user.user_profile)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("App_Login:profile"))
+    return render(request,"App_Login/profile_pic_up.html",context={"form":form})
+             

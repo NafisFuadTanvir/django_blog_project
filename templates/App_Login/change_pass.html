@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title_block %}Change your password{% endblock  %}
+
+{% block body_block %}
+
+{% if changed %}
+
+<div class="alert alert-success">
+    <h2>password changed successfully</h2>
+</div>
+
+
+{% endif %}
+
+<div class="mt-5 mx-auto">
+
+    <form method="POST">
+
+        {{form.as_p}}
+      {% csrf_token %}
+        
+        <button type="submit" class="btn btn-success btn-sm">Change</button>
+        
+        </form>
+</div>
+
+
+{% endblock  %}

@@ -4,7 +4,21 @@
 
 {% block body_block %}
 
-<h2>your Profile</h2>
+<h2 class="mt-4">your Profile</h2>
+
+{% if user.user_profile  %}
+
+<img class="rounded-circle" width="100px" src="/media/{{user.user_profile.profile_picture}}" alt="">
+<br>
+<a href="{% url "App_Login:change_pro_pic" %}" class="btn btn-info btn-sm mt-2 mb-3">Change picture</a>
+
+{% else %}
+
+<img class="rounded-circle" width="100px" src="/media/profile_pics/random.jpg" alt="">
+<br>
+<a href="{% url "App_Login:add_pro_pic" %}" class="btn btn-info btn-sm mt-2 mb-3">Add picture</a>
+
+{% endif %}
 
 <p>Username:- {{user.username}}</p>
 <p>Email:- {{user.email}}</p>
