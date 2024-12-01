@@ -1,7 +1,21 @@
 {% extends "base.html" %}
 
-{% block title_block %}{% endblock  %}
+{% block title_block %}Write Blog{% endblock  %}
 
 {% block body_block %}
+
+<h2 class="text-center mt-2">Write your blog here</h2>
+
+
+<div  class="container d-flex justify-content-center mt-3">
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {{form.as_p}}
+        {% csrf_token %}
+        <button class="btn btn-success btn-sm">Publish</button>
+    </form>
+</div>
+
 
 {% endblock %}
