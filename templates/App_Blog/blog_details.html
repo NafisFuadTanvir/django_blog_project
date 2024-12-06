@@ -1,7 +1,60 @@
 {% extends "base.html" %}
+ {% block title_block %} {{blog.blog_title}} {%endblock%} 
 
-{% block title_block %}{% endblock  %}
 
 {% block body_block %}
 
+<div class="row">
+  <div class="col-sm-6 mt-5">
+    <h3>{{blog.blog_title}}</h3>
+    <h6><i>{{blog.publish_Date}}</i></h6>
+    <h6>posted by : {{blog.author}}</h6>
+    <i><h6>published on: {{blog.publish_Date}}</h6></i>
+    <i><h6>Updated on: {{blog.update_Date}}</h6></i>
+  </div>
+
+  <div class="col-sm-6 mt-5">
+    <img
+      src="/media/{{blog.blog_image}}"
+      alt="{{blog.blog_title}}"
+      width="100%"
+    />
+  </div>
+  <p>{{blog.blog_content|linebreaks}}</p>
+</div>
+
+
+<div class="row">
+
+  <div class="col-sm-6">
+   <hr>
+   <h5>Comments:- </h5>
+
+   {% for comment in blog.blog_comment.all %}
+   
+   <p>
+    <a href="">@{{comment.user}}</a>
+  {{comment.comment}} <br> <h6>{{comment.comment_date}}</h6>
+  
+  </p>
+   
+   {% endfor %}
+
+  </div>
+  <div class="col-sm-6">
+      
+    <form method="POST">
+          
+      {{comment_form.as_p}}
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary btn-sm">Comment</button>
+
+    </form>
+
+
+  </div>
+
+</div>
+<br>
+<br>
 {% endblock %}

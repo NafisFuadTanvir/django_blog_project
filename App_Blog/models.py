@@ -26,7 +26,7 @@ class Blog(models.Model):
     
 
 class Comment(models.Model):
-    blog= models.ForeignKey(Blog,on_delete=models.CASCADE,verbose_name="blog_comment")
+    blog= models.ForeignKey(Blog,on_delete=models.CASCADE,related_name="blog_comment",verbose_name="blog_comment")
     user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_comment")   
     comment=models.TextField()
     comment_date= models.DateTimeField(auto_now_add=True)
