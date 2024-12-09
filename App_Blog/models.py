@@ -40,7 +40,7 @@ class Comment(models.Model):
     
     
 class Like(models.Model):
-          blog= models.ForeignKey(Blog,on_delete=models.CASCADE,verbose_name="blog_liked")
+          blog= models.ForeignKey(Blog,on_delete=models.CASCADE,verbose_name="blog_liked", related_name="blog_liked")
           user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_liked")
           
           def __str__(self):

@@ -19,9 +19,10 @@
     </div >
 
     <div class="col-sm-8">
-        <p> {{blog.blog_content | linebreaks | range_filter }} <a href="{% url 'App_Blog:blog_details' slug=blog.slug %}">see more</a>
+        <p> {{blog.blog_content | linebreaks | range_filter | safe  }} <a href="{% url 'App_Blog:blog_details' slug=blog.slug %}">see more</a>
          </p>
         <h6> posted by : <a href="#">{{blog.author}}</a> </h6>
+        <h6>{{blog.blog_liked.count}} Likes | {{blog.blog_comment.count}} Comments</h6>
 
     </div>
     <hr>

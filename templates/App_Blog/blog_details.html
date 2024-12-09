@@ -11,6 +11,7 @@
     <h6>posted by : {{blog.author}}</h6>
     <i><h6>published on: {{blog.publish_Date}}</h6></i>
     <i><h6>Updated on: {{blog.update_Date}}</h6></i>
+    <h6>{{blog.blog_liked.count}} Likes | {{blog.blog_comment.count}} Comments</h6>
   </div>
 
   <div class="col-sm-6 mt-5">
@@ -21,9 +22,19 @@
     />
   </div>
   <p>{{blog.blog_content|linebreaks}}</p>
+  <hr>
+  
 </div>
 
-
+{% if not liked %}
+<a href="{% url "App_Blog:blog_liked" pk=blog.pk %}">
+  <i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
+</a>
+{% else %}
+<a href="{% url "App_Blog:blog_unliked" pk=blog.pk %}">
+  <i class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i>
+</a>
+{% endif %}
 <div class="row">
 
   <div class="col-sm-6">
