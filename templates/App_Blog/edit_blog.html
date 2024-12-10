@@ -1,22 +1,25 @@
 {% extends "base.html" %}
 
-{% block title_block %} {{blog.blog_title}} {% endblock  %}
+{% block title_block %} {{ blog.blog_title }} {% endblock %}
 
 {% block body_block %}
 
-{% if blog.author == user  %}
-
-<form class="mt-4" method="POST">
-
-    {{form.as_p}}
-    {% csrf_token %}
-    <button type="submit">Update</button>
+<div class="container mt-5">
+    {% if blog.author == user %}
+        <div class="card shadow p-4 bg-light rounded">
+            <h2 class="text-center mb-4">Update Blog</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary w-100">Update</button>
+            </form>
+        </div>
     {% else %}
-
-    <p>Your are not allowed to view this page</p>
-
-</form>
-
-{% endif %}
+        <div class="alert alert-danger text-center">
+            <h4 class="alert-heading">Access Denied</h4>
+            <p>You are not allowed to view this page.</p>
+        </div>
+    {% endif %}
+</div>
 
 {% endblock %}

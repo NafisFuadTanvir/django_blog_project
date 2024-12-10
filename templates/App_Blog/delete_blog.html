@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Blog{% endblock %}
+
+{% block body_block %}
+    {% if object.author == user %}
+        <h1>Are you sure you want to delete "{{ object.title }}"?</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <button class="btn btn-success btn-sm" type="submit">Yes, delete</button>
+        </form>
+        <a href="{% url 'App_Blog:blog_details' slug=object.slug %}">Cancel</a>
+    {% else %}
+        <p>You are not allowed to view this page.</p>
+    {% endif %}
+{% endblock %}

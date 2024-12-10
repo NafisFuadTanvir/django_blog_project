@@ -11,6 +11,7 @@ urlpatterns=[
     path("liked/<pk>/",views.liked,name="blog_liked"),
     path("unliked/<pk>/",views.unliked,name="blog_unliked"),
     path("my-blogs/",views.MyBlogs.as_view(),name="my_blogs"),
-    path("edit-blogs/<pk>/",views.UpdateBlog.as_view(),name="edit_blog")
+    path("edit-blogs/<pk>/",views.UpdateBlog.as_view(),name="edit_blog"),
+    path("delete-blog/<pk>/",views.DeleteBlog.as_view(),name="delete_blog")
     
 ]

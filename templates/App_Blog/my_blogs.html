@@ -17,6 +17,7 @@
 </div>
 
 <a href="{% url "App_Blog:edit_blog" pk=blog.pk  %}">Edit</a>
+<a href="{% url "App_Blog:delete_blog" pk=blog.pk  %}">Delete</a>
 <hr>
 {% endfor %}
 {% endblock %}

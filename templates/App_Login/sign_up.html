@@ -1,42 +1,27 @@
 {% extends "base.html" %}
 
-
-{% block title_block %}Create new account{% endblock  %}
+{% block title_block %}Create New Account{% endblock %}
 
 {% block body_block %}
 
 {% if registered %}
-
-<div class='alert alert-success mt-5'>
-
-    <h2>Account Created successfully <a href="{% url "App_Login:login" %}">Login Here</a> </h2>
-</div>
-
-
-{% else  %}
-
-<div class="border border-2 mt-4">
-
-
-    <h2 class="text-center mt-2 mb-4">Create a new account</h2>
-
-
-<div class="d-flex justify-content-center align-items-center ">
-    <form method="POST">
-        {{form.as_p}}
-        <button class="btn btn-success btn-sm mt-4" type="submit">Create Account</button>
-        {% csrf_token %}
-        </form>
-        
-        <br>
+    <div class="alert alert-success mt-5 text-center">
+        <h2>Account created successfully! <a href="{% url 'App_Login:login' %}">Login Here</a></h2>
+    </div>
+{% else %}
+    <div class="container mt-5">
+        <div class="card shadow-sm rounded-lg p-4">
+            <h2 class="text-center mb-4">Create a New Account</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-success w-100 py-2">Create Account</button>
+            </form>
+            <p class="text-center mt-3">Already have an account? <a href="{% url 'App_Login:login' %}">Login here</a></p>
         </div>
-        <p class="text-center mt-4">Already Have an account? <a href="{% url "App_Login:login" %}">login here</a> </p>
-
-</div>
-
-
-
-
-
+    </div>
 {% endif %}
-{% endblock  %}
+
+{% endblock %}

@@ -1,19 +1,16 @@
 {% extends "base.html" %}
 
-{% block title_block %}Change your profile{% endblock  %}
+{% block title_block %}Change Your Profile{% endblock %}
 
 {% block body_block %}
 
-
-<div class="mt-4">
-    <form method="POST">
-
-        {{form.as_p}}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <form method="POST" class="w-50 p-4 rounded shadow bg-light">
+        <h2 class="text-center mb-4">Change Your Profile</h2>
         {% csrf_token %}
-        <button type="submit" class="btn btn-warning btn-sm">Change</button>
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary w-100 mt-3">Change</button>
     </form>
-    
 </div>
 
-
-{% endblock  %}
+{% endblock %}
